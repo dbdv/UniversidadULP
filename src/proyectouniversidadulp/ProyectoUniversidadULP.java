@@ -60,6 +60,8 @@ public class ProyectoUniversidadULP {
          id.guardarInscripcion(ins4);
          id.guardarInscripcion(ins5);
          
+         System.out.println("pruebaaaaaaaaaaaaa");
+         
          for(Materia m : id.cursadasPor(3)){
              System.out.println(m.toString());
          }
