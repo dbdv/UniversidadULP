@@ -25,8 +25,8 @@ public class ProyectoUniversidadULP {
 
         List<Alumno> alumnos = new ArrayList<>();
 
-        Alumno a = new Alumno(2225, "Marcos", "Suarez", LocalDate.of(2000, Month.NOVEMBER, 28), true); //CREANDO ALUMNOS
-        Alumno b = new Alumno(9999, "Jose", "Sosa", LocalDate.of(1995, Month.MARCH, 12), true);
+        Alumno a = new Alumno(2225, "Marcos Suarez", LocalDate.of(2000, Month.NOVEMBER, 28), true); //CREANDO ALUMNOS
+        Alumno b = new Alumno(9999, "Jose Sosa", LocalDate.of(1995, Month.MARCH, 12), true);
         ad.guardarAlumno(a); //AGREGANDO ALUMNOS
         ad.guardarAlumno(b);
         ad.actualizarAlumno(a);
