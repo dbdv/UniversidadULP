@@ -36,7 +36,7 @@ public class InscripcionData {
 
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setInt(1, ins.getIdAlumno().getId_alumno());
+            ps.setInt(1, ins.getIdAlumno().getIdAlumno());
             ps.setInt(2, ins.getIdMateria().getId_materia());
             ps.setDouble(3, ins.getNota());
 
@@ -189,7 +189,7 @@ public class InscripcionData {
             
             while(rs.next()){
                 alumno=new Alumno();
-                alumno.setId_alumno(rs.getInt(1));
+                alumno.setIdAlumno(rs.getInt(1));
                 alumno.setLegajo(rs.getInt(2));
                 alumno.setNombre(rs.getString(3));
                 alumno.setFechaNac(rs.getDate(4).toLocalDate());

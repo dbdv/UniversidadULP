@@ -12,25 +12,23 @@ import java.time.LocalDate;
  * @author Usuario
  */
 public class Alumno {
-    private String nombre, apellido;
+    private String nombre;
     private int legajo;
-    private int id_alumno;
+    private int idAlumno;
     private LocalDate fechaNac;
     private boolean activo;
 
-    public Alumno(int legajo, String nombre, String apellido, LocalDate fechaNac, boolean activo) {
+    public Alumno(int legajo, String nombre, LocalDate fechaNac, boolean activo) {
         this.nombre = nombre;
-        this.apellido = apellido;
         this.legajo = legajo;
         this.fechaNac = fechaNac;
         this.activo = activo;
     }
 
-    public Alumno(int legajo, String nombre, String apellido, int id_alumno, LocalDate fechaNac, boolean activo) {
+    public Alumno(int legajo, String nombre, int id_alumno, LocalDate fechaNac, boolean activo) {
         this.nombre = nombre;
-        this.apellido = apellido;
         this.legajo = legajo;
-        this.id_alumno = id_alumno;
+        this.idAlumno= idAlumno;
         this.fechaNac = fechaNac;
         this.activo = activo;
     }
@@ -58,12 +56,12 @@ public class Alumno {
         this.legajo = legajo;
     }
 
-    public int getId_alumno() {
-        return id_alumno;
+    public int getIdAlumno() {
+        return idAlumno;
     }
 
-    public void setId_alumno(int id_alumno) {
-        this.id_alumno = id_alumno;
+    public void setIdAlumno(int id_alumno) {
+        this.idAlumno = idAlumno;
     }
 
     public LocalDate getFechaNac() {
@@ -82,19 +80,13 @@ public class Alumno {
         this.activo = activo;
     }
 
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-    
+ 
+   
     
     
     @Override
     public String toString() {
-        return "Alumno{" + "nombre=" + nombre + ", legajo=" + legajo + ", id_alumno=" + id_alumno + ", fechaNac=" + fechaNac + ", activo=" + activo + '}';
+        return "Alumno{" + "nombre=" + nombre + ", legajo=" + legajo + ", id_alumno=" + idAlumno + ", fechaNac=" + fechaNac + ", activo=" + activo + '}';
     }
     
     

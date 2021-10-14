@@ -27,13 +27,12 @@ public class AlumnoData {
     }
 
     public void guardarAlumno(Alumno alumno) {
-        String sql = "INSERT INTO alumno(legajo, nombre, apellido, fechNac, activo) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO alumno(legajo, nombre, fechaNac, activo) VALUES (?,?,?,?,?)";
 
         try {
             try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {  //Prepara la sentencia para SQL
                 ps.setInt(1, alumno.getLegajo());
                 ps.setString(2, alumno.getNombre());
-                ps.setString(3, alumno.getApellido());
                 ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
                 ps.setBoolean(5, alumno.isActivo());
 
@@ -41,9 +40,9 @@ public class AlumnoData {
                 ResultSet rs = ps.getGeneratedKeys(); //Recupero el ID (id_alumno)
                 if (rs.next()) {
                     System.out.println("Alumno " + alumno.getNombre() + ", cargado correctamente.");
-                    alumno.setId_alumno(rs.getInt(1));
+                    alumno.setIdAlumno(rs.getInt(1));
                     //alumno.setId_alumno(rs.getInt("id_alumno"));
-                    System.out.println("id del alumno: " + alumno.getId_alumno());
+                    System.out.println("id del alumno: " + alumno.getIdAlumno());
                     
                 }
                 ps.close();
@@ -96,7 +95,7 @@ public class AlumnoData {
     }
 */
     public void actualizarAlumno(Alumno alumno) {
-        String sql = "UPDATE alumno SET legajo=?, nombre=?, fechNac=? WHERE idAlumno=?";
+        String sql = "UPDATE alumno SET legajo=?, nombre=?, fechaNac=? WHERE idAlumno=?";
 
         try {
             try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {  //Prepara la sentencia para SQL
@@ -104,7 +103,7 @@ public class AlumnoData {
                 ps.setString(2, alumno.getNombre());
                 ps.setDate(3, Date.valueOf(alumno.getFechaNac()));
                 //ps.setBoolean(4, alumno.isActivo()); SACO EL CAMPO ACTIVO
-                ps.setInt(4, alumno.getId_alumno());
+                ps.setInt(4, alumno.getIdAlumno());
 
                 ps.executeUpdate(); //NO PONER PARAMETROS
                 ResultSet rs = ps.getGeneratedKeys(); //Recupero el ID (id_alumno)
@@ -130,10 +129,9 @@ public class AlumnoData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 a = new Alumno();
-                a.setId_alumno(rs.getInt(1));
+                a.setIdAlumno(rs.getInt(1));
                 a.setLegajo(rs.getInt(2));
                 a.setNombre(rs.getString(3));
-                a.setApellido(rs.getString(4));
                 a.setFechaNac(rs.getDate(5).toLocalDate()); //Convierte un Date a LocalDate                                     
                 a.setActivo(rs.getBoolean(6));
 
@@ -160,10 +158,9 @@ public class AlumnoData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 a = new Alumno();
-                a.setId_alumno(rs.getInt(1));
+                a.setIdAlumno(rs.getInt(1));
                 a.setLegajo(rs.getInt(2));
                 a.setNombre(rs.getString(3));
-                a.setApellido(rs.getString(4));
                 a.setFechaNac(rs.getDate(5).toLocalDate()); //Convierte un Date a LocalDate                                     
                 a.setActivo(rs.getBoolean(6));
                 alumnos.add(a);
@@ -189,7 +186,7 @@ public class AlumnoData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 a = new Alumno();
-                a.setId_alumno(rs.getInt(1));
+                a.setIdAlumno(rs.getInt(1));
                 a.setLegajo(rs.getInt(2));
                 a.setNombre(rs.getString(3));
                 a.setFechaNac(rs.getDate(4).toLocalDate()); //Convierte un Date a LocalDate                                     
