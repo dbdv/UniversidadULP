@@ -12,26 +12,30 @@ import java.time.LocalDate;
  * @author Usuario
  */
 public class Alumno {
-    private String nombre;
+    private String nombre, apellido;
     private int legajo;
     private int id_alumno;
     private LocalDate fechaNac;
     private boolean activo;
 
-    public Alumno(String nombre, int legajo, int id_alumno, LocalDate fechaNac, boolean activo) {
+    public Alumno(int legajo, String nombre, String apellido, LocalDate fechaNac, boolean activo) {
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.legajo = legajo;
+        this.fechaNac = fechaNac;
+        this.activo = activo;
+    }
+
+    public Alumno(int legajo, String nombre, String apellido, int id_alumno, LocalDate fechaNac, boolean activo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.legajo = legajo;
         this.id_alumno = id_alumno;
         this.fechaNac = fechaNac;
         this.activo = activo;
-    }    
-    
-    public Alumno(int legajo, String nombre, LocalDate fechaNac) {
-        this.nombre = nombre;
-        this.legajo = legajo;        
-        this.fechaNac = fechaNac;
-        this.activo = true;
     }
+
+    
 
     
     public Alumno() {
@@ -77,6 +81,16 @@ public class Alumno {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    
+    
     
     @Override
     public String toString() {

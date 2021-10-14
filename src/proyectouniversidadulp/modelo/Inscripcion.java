@@ -18,9 +18,10 @@ public class Inscripcion {
     public Inscripcion() {
     }    
     
-    public Inscripcion(Alumno id_alumno, Materia id_materia) {
+    public Inscripcion(Alumno id_alumno, Materia id_materia, double nota) {
         this.id_alumno = id_alumno;
-        this.id_materia = id_materia;        
+        this.id_materia = id_materia;       
+        this.nota = nota;
     }
 
     public Inscripcion(int id_inscripcion, Alumno id_alumno, Materia id_materia, double nota) {

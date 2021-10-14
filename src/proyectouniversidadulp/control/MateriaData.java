@@ -23,10 +23,10 @@ import proyectouniversidadulp.modelo.Materia;
  *
  * @author daniel
  */
-public class MateriaData {    
-    
+public class MateriaData {
+
     private Connection con;
-    
+
     public MateriaData(Conexion conexion) {
         try {
             this.con = conexion.getConexion();
@@ -36,41 +36,37 @@ public class MateriaData {
         }
     }
 
-    
-    
-    public void actualizarMateria(Materia materia){
-        
+    public void actualizarMateria(Materia materia) {
+
         String query = "UPDATE materia SET nombre = ?, anio = ?, activo = ? WHERE idMateria = ?";
-        
-        try{
-            
+
+        try {
+
             PreparedStatement ps = con.prepareStatement(query);
-            
+
             ps.setInt(4, materia.getId_materia());
             ps.setString(1, materia.getNombre());
             ps.setInt(2, materia.getCuatrimestre());
             ps.setBoolean(3, materia.isActivo());
-            
+
             ps.executeUpdate();
-            
+
             System.out.println("Materia actualizada correctamente.");
-            
+
             ps.close();
-            
-        }catch(SQLException sqlE){
+
+        } catch (SQLException sqlE) {
             System.out.println("Error al actualizar.");
         }
     }
-    
-
 
     public void guardarMateria(Materia materia) {
-        String sql = "INSERT INTO materia(nombre, cuatrimestre, activo) VALUES (?,?,?)";
+        String sql = "INSERT INTO materia(nombre, anio, activo) VALUES (?,?,?)";
 
         try {
             try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {  //Prepara la sentencia para SQL
                 ps.setString(1, materia.getNombre());
-                ps.setInt(2, materia.getCuatrimestre());                                
+                ps.setInt(2, materia.getCuatrimestre());
                 ps.setBoolean(3, materia.isActivo());
 
                 ps.executeUpdate(); //NO PONER PARAMETROS
@@ -84,32 +80,60 @@ public class MateriaData {
                 ps.close();
             }
         } catch (SQLException ex) {
-            System.out.println("Error al insertar \n" + ex);
+            System.out.println("Error al insertar Materia \n" + ex);
         }
     }
-    
-   public void darDeBajaMateria(int id){
-       String sql = "UPDATE materia SET  activo=? WHERE idMateria = ?";
-       
-       try {
-           PreparedStatement ps = con.prepareStatement(sql);
-              ps.setBoolean(1, false);
-              ps.setInt(2, id);
-              
+
+    public void darDeBajaMateria(int id) {
+        String sql = "UPDATE materia SET  activo=? WHERE idMateria = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setBoolean(1, false);
+            ps.setInt(2, id);
+
             ps.executeUpdate();
-            
+
             System.out.println("Materia dada de baja correctamente.");
-            
+
             ps.close();
-            
-        }catch(SQLException sqlE){
+
+        } catch (SQLException sqlE) {
             System.out.println("Error al dar de baja.");
         }
     }
-    
-   
-   
-      public List<Materia> obtenerMaterias() {
+
+    public Materia buscarMateria(int id) {
+
+        Materia m = null;
+
+        String sql = "SELECT * FROM materia  WHERE activo=0";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                m = new Materia();
+                m.setId_materia(rs.getInt(1));
+                m.setNombre(rs.getString(2));
+                m.setCuatrimestre(rs.getInt(3));
+                m.setActivo(rs.getBoolean(4));
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println("Error al buscar\n" + ex);
+
+        }
+
+        return m;
+    }
+
+    public List<Materia> obtenerMaterias() {
         List<Materia> materias = new ArrayList<>();
         Materia m = null;
 
@@ -118,25 +142,24 @@ public class MateriaData {
         try {
             ps = con.prepareStatement(sql);
 
-            
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               m = new Materia();
+                m = new Materia();
                 m.setId_materia(rs.getInt(1));
                 m.setNombre(rs.getString(2));
                 m.setCuatrimestre(rs.getInt(3));
                 m.setActivo(rs.getBoolean(4));
-               materias.add(m);
+                materias.add(m);
             }
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Error al buscar");
 
-        }        
+        }
         return materias;
     }
-      
-      public List<Materia> obtenerMateriasActivass() {
+
+    public List<Materia> obtenerMateriasActivass() {
         List<Materia> materias = new ArrayList<>();
         Materia m = null;
 
@@ -145,25 +168,21 @@ public class MateriaData {
         try {
             ps = con.prepareStatement(sql);
 
-            
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               m = new Materia();
+                m = new Materia();
                 m.setId_materia(rs.getInt(1));
                 m.setNombre(rs.getString(2));
                 m.setCuatrimestre(rs.getInt(3));
                 m.setActivo(rs.getBoolean(4));
-               materias.add(m);
+                materias.add(m);
             }
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Error al buscar");
 
-        }        
+        }
         return materias;
     }
 
 }
-    
-
-

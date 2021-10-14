@@ -27,14 +27,15 @@ public class AlumnoData {
     }
 
     public void guardarAlumno(Alumno alumno) {
-        String sql = "INSERT INTO alumno(legajo, nombre, fechaNac, activo) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO alumno(legajo, nombre, apellido, fechNac, activo) VALUES (?,?,?,?,?)";
 
         try {
             try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {  //Prepara la sentencia para SQL
                 ps.setInt(1, alumno.getLegajo());
                 ps.setString(2, alumno.getNombre());
-                ps.setDate(3, Date.valueOf(alumno.getFechaNac()));
-                ps.setBoolean(4, alumno.isActivo());
+                ps.setString(3, alumno.getApellido());
+                ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
+                ps.setBoolean(5, alumno.isActivo());
 
                 ps.executeUpdate(); //NO PONER PARAMETROS
                 ResultSet rs = ps.getGeneratedKeys(); //Recupero el ID (id_alumno)
@@ -48,12 +49,12 @@ public class AlumnoData {
                 ps.close();
             }
         } catch (SQLException ex) {
-            System.out.println("Error al insertar \n" + ex);
+            System.out.println("Error al insertar Alumno\n" + ex);
         }
     }
     
     public void borrarAlumno(int id) {
-        String sql = "DELETE FROM alumno WHERE id_alumno=?";
+        String sql = "DELETE FROM alumno WHERE idAlumno=?";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
@@ -95,7 +96,7 @@ public class AlumnoData {
     }
 
     public void actualizarAlumno(Alumno alumno) {
-        String sql = "UPDATE alumno SET legajo=?, nombre=?, fechaNac=? WHERE id_alumno=?";
+        String sql = "UPDATE alumno SET legajo=?, nombre=?, fechNac=? WHERE idAlumno=?";
 
         try {
             try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {  //Prepara la sentencia para SQL
@@ -112,14 +113,14 @@ public class AlumnoData {
                 ps.close();
             }
         } catch (SQLException ex) {
-            System.out.println("Error al insertar \n" + ex);
+            System.out.println("Error al actualizar Alumno\n" + ex);
         }
     }
 
     public Alumno buscarAlumno(int id_alumno) {
         Alumno a = null;
 
-        String sql = "SELECT * FROM alumno WHERE id_alumno=?";
+        String sql = "SELECT * FROM alumno WHERE idAlumno = ?";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
@@ -132,13 +133,14 @@ public class AlumnoData {
                 a.setId_alumno(rs.getInt(1));
                 a.setLegajo(rs.getInt(2));
                 a.setNombre(rs.getString(3));
-                a.setFechaNac(rs.getDate(4).toLocalDate()); //Convierte un Date a LocalDate                                     
-                a.setActivo(rs.getBoolean(5));
+                a.setApellido(rs.getString(4));
+                a.setFechaNac(rs.getDate(5).toLocalDate()); //Convierte un Date a LocalDate                                     
+                a.setActivo(rs.getBoolean(6));
 
             }
             ps.close();
         } catch (SQLException ex) {
-            System.out.println("Error al buscar");
+            System.out.println("Error al buscar alumno");
 
         }
 
@@ -161,8 +163,9 @@ public class AlumnoData {
                 a.setId_alumno(rs.getInt(1));
                 a.setLegajo(rs.getInt(2));
                 a.setNombre(rs.getString(3));
-                a.setFechaNac(rs.getDate(4).toLocalDate()); //Convierte un Date a LocalDate                                     
-                a.setActivo(rs.getBoolean(5));
+                a.setApellido(rs.getString(4));
+                a.setFechaNac(rs.getDate(5).toLocalDate()); //Convierte un Date a LocalDate                                     
+                a.setActivo(rs.getBoolean(6));
                 alumnos.add(a);
             }
             ps.close();

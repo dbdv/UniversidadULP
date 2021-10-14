@@ -19,6 +19,7 @@ public class InscripcionData {
 
     public InscripcionData(Conexion conexion) {
         try {
+            this.conexion = conexion;
             this.con = conexion.getConexion();
             System.out.println("Conexion InscripcionData exitosa");
         } catch (SQLException sqlE) {
@@ -56,13 +57,17 @@ public class InscripcionData {
     }
 
     public List<Inscripcion> obtenerInscripcionesMateria(int id) {
+        
         List<Inscripcion> lista = new ArrayList<>();
         String sql;
         Inscripcion ins;
         Alumno alumno;
         Materia materia;
+        
         sql = "SELECT * FROM inscripcion,alumno,materia WHERE inscripcion.idAlumno=alumno.idAlumno and inscripcion.idMateria=materia.idMateria and materia.idMateria = ?";
+        
         PreparedStatement ps;
+        
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -85,6 +90,37 @@ public class InscripcionData {
         }
 
         return lista;
+    }
+    
+    public List<Materia> cursadasPor(int id){
+        
+        List<Materia> materias = new ArrayList<>();
+        Materia m = new Materia();
+        
+        String query = "SELECT * FROM inscripcion,alumno,materia WHERE inscripcion.idAlumno=alumno.idAlumno and inscripcion.idMateria=materia.idMateria and alumno.idAlumno = ?";
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                m.setId_materia(rs.getInt(1));
+                m.setNombre(rs.getString(2));
+                m.setCuatrimestre(rs.getInt(3));
+                m.setActivo(rs.getBoolean(4));
+                
+                materias.add(m);
+            }
+            
+        }catch(SQLException sqlE){
+            System.out.println("Error de busqueda\n" + sqlE);
+        }
+        
+        return materias;
     }
 
     public Alumno buscarAlumno(int id) {
