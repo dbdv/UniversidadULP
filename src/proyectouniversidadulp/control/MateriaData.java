@@ -38,7 +38,7 @@ public class MateriaData {
 
     public void actualizarMateria(Materia materia) {
 
-        String query = "UPDATE materia SET nombre = ?, anio = ?, activo = ? WHERE idMateria = ?";
+        String query = "UPDATE materia SET nombre = ?, cuatrimestre = ?, activo = ? WHERE idMateria = ?";
 
         try {
 
@@ -61,7 +61,7 @@ public class MateriaData {
     }
 
     public void guardarMateria(Materia materia) {
-        String sql = "INSERT INTO materia(nombre, anio, activo) VALUES (?,?,?)";
+        String sql = "INSERT INTO materia(nombre, cuatrimestre, activo) VALUES (?,?,?)";
 
         try {
             try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {  //Prepara la sentencia para SQL
