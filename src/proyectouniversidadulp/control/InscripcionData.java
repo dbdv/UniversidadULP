@@ -128,6 +128,13 @@ public class InscripcionData {
         return ad.buscarAlumno(id);
 
     }
+    //prueba 
+     public Alumno buscar(int id) {
+        AlumnoData ad = new AlumnoData(conexion);
+        return ad.buscarAlumno(id);
+
+    }
+
 
     public Materia buscarMateria(int id) {
         MateriaData md = new MateriaData(conexion);
