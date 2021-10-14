@@ -24,12 +24,9 @@ import proyectouniversidadulp.modelo.Materia;
  * @author daniel
  */
 public class MateriaData {    
+    
     private Connection con;
     
-
-
-
-
     public MateriaData(Conexion conexion) {
         try {
             this.con = conexion.getConexion();
@@ -117,6 +114,33 @@ public class MateriaData {
         Materia m = null;
 
         String sql = "SELECT * FROM materia  ";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+               m = new Materia();
+                m.setId_materia(rs.getInt(1));
+                m.setNombre(rs.getString(2));
+                m.setCuatrimestre(rs.getInt(3));
+                m.setActivo(rs.getBoolean(4));
+               materias.add(m);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar");
+
+        }        
+        return materias;
+    }
+      
+      public List<Materia> obtenerMateriasActivass() {
+        List<Materia> materias = new ArrayList<>();
+        Materia m = null;
+
+        String sql = "SELECT * FROM materia  WHERE activo=0";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
