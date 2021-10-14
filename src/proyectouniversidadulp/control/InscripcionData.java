@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import proyectouniversidadulp.modelo.Alumno;
 import proyectouniversidadulp.modelo.Conexion;
 import proyectouniversidadulp.modelo.Inscripcion;
@@ -35,8 +36,8 @@ public class InscripcionData {
 
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setInt(1, ins.getId_alumno().getId_alumno());
-            ps.setInt(2, ins.getId_materia().getId_materia());
+            ps.setInt(1, ins.getIdAlumno().getId_alumno());
+            ps.setInt(2, ins.getIdMateria().getId_materia());
             ps.setDouble(3, ins.getNota());
 
             ps.executeUpdate();
@@ -44,9 +45,9 @@ public class InscripcionData {
             ResultSet rs = ps.getGeneratedKeys();
 
             if (rs.next()) {
-                ins.setId_inscripcion(rs.getInt(1));
+                ins.setIdIns(rs.getInt(1));
 
-                System.out.println("Inscripcion con ID: " + ins.getId_inscripcion() + " nota: " + ins.getNota() + " cargada correctamente.\n");
+                System.out.println("Inscripcion con ID: " + ins.getIdIns() + " nota: " + ins.getNota() + " cargada correctamente.\n");
             }
 
             ps.close();
@@ -75,12 +76,12 @@ public class InscripcionData {
             while (rs.next()) {
 
                 ins = new Inscripcion();
-                ins.setId_inscripcion(rs.getInt(1));
+                ins.setIdIns(rs.getInt(1));
 
                 alumno = buscarAlumno(rs.getInt(2));
-                ins.setId_alumno(alumno);
+                ins.setIdAlumno(alumno);
                 materia = buscarMateria(rs.getInt(3));
-                ins.setId_materia(materia);
+                ins.setIdMateria(materia);
                 ins.setNota(rs.getDouble(4));
                 lista.add(ins);
             }
@@ -92,7 +93,7 @@ public class InscripcionData {
         return lista;
     }
     
-    public List<Materia> cursadasPor(int id){
+    /*public List<Materia> cursadasPor(int id){
         
         List<Materia> materias = new ArrayList<>();
         Materia m = new Materia();
@@ -121,8 +122,88 @@ public class InscripcionData {
         }
         
         return materias;
+    }*/
+    public List<Materia> obtenerMateriasCursadasPorAlumno(int id_alumno) {
+        List<Materia> lista = new ArrayList<>();
+        Materia materia;
+        String sql = "SELECT materia.idMateria, nombre, cuatrimestre, activo FROM inscripcion, materia WHERE inscripcion.idMateria=materia.idMateria AND inscripcion.idAlumno= ?";
+        try {
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+                ps.setInt(1, id_alumno);
+                
+                ResultSet rs=ps.executeQuery();
+                
+                while(rs.next()){
+                    materia=new Materia();
+                    materia.setId_materia(rs.getInt(1));
+                    materia.setNombre(rs.getString(2));
+                    materia.setCuatrimestre(rs.getInt(3));
+                    materia.setActivo(rs.getBoolean(4));
+                    lista.add(materia);                
+                }
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener las materias cursadas por alumno");
+        }
+        
+        return lista;
     }
-
+    
+    public List<Materia> obtenerMateriasNoCursadasPorAlumno(int id_alumno) {
+        List<Materia> lista = new ArrayList<>();
+        Materia materia;
+        String sql = "SELECT * FROM materia WHERE idMateria NOT IN (SELECT materia.idMateria FROM inscripcion, materia WHERE inscripcion.idMateria=materia.idMateria AND inscripcion.idAlumno= ?) ";
+        try {
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+                ps.setInt(1, id_alumno);
+                
+                ResultSet rs=ps.executeQuery();
+                
+                while(rs.next()){
+                    materia=new Materia();
+                    materia.setId_materia(rs.getInt(1));
+                    materia.setNombre(rs.getString(2));
+                    materia.setCuatrimestre(rs.getInt(3));
+                    materia.setActivo(rs.getBoolean(4));
+                    lista.add(materia);                
+                }
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener las materias cursadas por alumno");
+        }
+        
+        return lista;
+    }
+    
+     public List<Alumno> obtenerAlumnosPorMateria(int idMateria) throws SQLException {
+        List<Alumno> lista = new ArrayList<>();        
+        Alumno alumno;
+        
+        
+        String sql = "SELECT alumno.idAlumno, legajo, nombre, fechaNac, activo FROM inscripcion, alumno WHERE inscripcion.idAlumno=alumno.idAlumno AND inscripcion.idMateria= ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idMateria);
+            ResultSet rs=ps.executeQuery();
+            
+            while(rs.next()){
+                alumno=new Alumno();
+                alumno.setId_alumno(rs.getInt(1));
+                alumno.setLegajo(rs.getInt(2));
+                alumno.setNombre(rs.getString(3));
+                alumno.setFechaNac(rs.getDate(4).toLocalDate());
+                alumno.setActivo(rs.getBoolean(5));
+                lista.add(alumno);                
+            }
+            ps.close();
+        }
+        
+        
+        return lista;
+    }
+    
+    
     public Alumno buscarAlumno(int id) {
         AlumnoData ad = new AlumnoData(conexion);
         return ad.buscarAlumno(id);

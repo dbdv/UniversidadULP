@@ -10,49 +10,49 @@ package proyectouniversidadulp.modelo;
  * @author Usuario
  */
 public class Inscripcion {
-    private int id_inscripcion;
-    private Alumno id_alumno;
-    private Materia id_materia;
+    private int idIns;
+    private Alumno idAlumno;
+    private Materia idMateria;
     private double nota;
 
     public Inscripcion() {
     }    
     
     public Inscripcion(Alumno id_alumno, Materia id_materia, double nota) {
-        this.id_alumno = id_alumno;
-        this.id_materia = id_materia;       
+        this.idAlumno = id_alumno;
+        this.idMateria = id_materia;       
         this.nota = nota;
     }
 
     public Inscripcion(int id_inscripcion, Alumno id_alumno, Materia id_materia, double nota) {
-        this.id_inscripcion = id_inscripcion;
-        this.id_alumno = id_alumno;
-        this.id_materia = id_materia;
+        this.idIns = id_inscripcion;
+        this.idAlumno = id_alumno;
+        this.idMateria = id_materia;
         this.nota = nota;
     }
 
-    public int getId_inscripcion() {
-        return id_inscripcion;
+    public int getIdIns() {
+        return idIns;
     }
 
-    public void setId_inscripcion(int id_inscripcion) {
-        this.id_inscripcion = id_inscripcion;
+    public void setIdIns(int idIns) {
+        this.idIns = idIns;
     }
 
-    public Alumno getId_alumno() {
-        return id_alumno;
+    public Alumno getIdAlumno() {
+        return idAlumno;
     }
 
-    public void setId_alumno(Alumno id_alumno) {
-        this.id_alumno = id_alumno;
+    public void setIdAlumno(Alumno idAlumno) {
+        this.idAlumno = idAlumno;
     }
 
-    public Materia getId_materia() {
-        return id_materia;
+    public Materia getIdMateria() {
+        return idMateria;
     }
 
-    public void setId_materia(Materia id_materia) {
-        this.id_materia = id_materia;
+    public void setIdMateria(Materia idMateria) {
+        this.idMateria = idMateria;
     }
 
     public double getNota() {

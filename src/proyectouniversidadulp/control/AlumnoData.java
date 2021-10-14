@@ -67,8 +67,8 @@ public class AlumnoData {
         }
     }
     
-    public void activarAlumno (int id) { 
-        String sql = "UPDATE alumno SET activo=? WHERE id_alumno=?";
+    /*public void activarAlumno (int id) { 
+        String sql = "UPDATE alumno SET activo=? WHERE idAlumno=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setBoolean(1, true);
@@ -94,7 +94,7 @@ public class AlumnoData {
             System.out.println("Error al desactivar \n" + ex);
         }
     }
-
+*/
     public void actualizarAlumno(Alumno alumno) {
         String sql = "UPDATE alumno SET legajo=?, nombre=?, fechNac=? WHERE idAlumno=?";
 
