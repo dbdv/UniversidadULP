@@ -202,6 +202,39 @@ public class InscripcionData {
         
         return lista;
     }
+     
+    public List<Inscripcion> obtenerInscripcion(int idAlumno, int idMateria) throws SQLException {
+        List<Inscripcion> lista = new ArrayList<>();        
+        Inscripcion ins;
+        Alumno alumno;
+        Materia materia;
+        
+        
+        String sql = "SELECT inscripcion.idInsc, alumno.idAlumno, materia.idMateria, legajo, alumno.nombre, materia.nombre, nota FROM inscripcion, alumno, materia WHERE inscripcion.idAlumno=? AND inscripcion.idMateria=? AND inscripcion.idAlumno=alumno.idAlumno AND inscripcion.idMateria=materia.idMateria";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idAlumno);
+            ps.setInt(2, idMateria);
+            ResultSet rs=ps.executeQuery();
+            
+            while (rs.next()) {
+
+                ins = new Inscripcion();
+                ins.setIdIns(rs.getInt(1));
+
+                alumno = buscarAlumno(rs.getInt(2));
+                ins.setIdAlumno(alumno.getIdAlumno());
+                materia = buscarMateria(rs.getInt(3));
+                ins.setIdMateria(materia.getId_materia());
+                ins.setNota(rs.getDouble(4));
+                lista.add(ins);
+            }
+            ps.close();
+        }
+        
+        
+        return lista;
+        
+    } 
     
     
     public Alumno buscarAlumno(int id) {
