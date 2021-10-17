@@ -5,6 +5,7 @@
  */
 package proyectouniversidadulp;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class Test {
      * @param args the command line arguments
      * @throws java.lang.ClassNotFoundException
      */
-    public static void main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Conexion conexion = new Conexion(); //CREANDO LA CONEXION   
 
         // List<Alumno> alumnos = new ArrayList<>();
@@ -73,6 +74,10 @@ public class Test {
         //
         Inscripcion i1 = new Inscripcion(67, 36, 10);
         id.guardarInscripcion(i1);
+        //System.out.println(id.obtenerAlumnosPorMateria(36));
+        //System.out.println(id.obtenerInscripcionesMateria(36));
+        //System.out.println(id.obtenerMateriasCursadasPorAlumno(67));
+        System.out.println(id.obtenerMateriasNoCursadasPorAlumno(67));
         
     }
     
