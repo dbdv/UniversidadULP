@@ -25,7 +25,7 @@ public class Alumno {
         this.activo = activo;
     }
 
-    public Alumno(int legajo, String nombre, int id_alumno, LocalDate fechaNac, boolean activo) {
+    public Alumno(int legajo, String nombre, int idAlumno, LocalDate fechaNac, boolean activo) {
         this.nombre = nombre;
         this.legajo = legajo;
         this.idAlumno= idAlumno;
@@ -60,7 +60,7 @@ public class Alumno {
         return idAlumno;
     }
 
-    public void setIdAlumno(int id_alumno) {
+    public void setIdAlumno(int idAlumno) {
         this.idAlumno = idAlumno;
     }
 

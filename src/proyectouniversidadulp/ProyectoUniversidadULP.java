@@ -25,8 +25,8 @@ public class ProyectoUniversidadULP {
 
         List<Alumno> alumnos = new ArrayList<>();
 
-        Alumno a = new Alumno(2225, "Marcos Suarez", LocalDate.of(2000, Month.NOVEMBER, 28), true); //CREANDO ALUMNOS
-        Alumno b = new Alumno(9999, "Jose Sosa", LocalDate.of(1995, Month.MARCH, 12), true);
+        Alumno a = new Alumno(9898, "Marcos Suarez", LocalDate.of(2000, Month.NOVEMBER, 28), true); //CREANDO ALUMNOS
+        Alumno b = new Alumno(6969, "Martin Jofre", LocalDate.of(1995, Month.MARCH, 12), true);
         ad.guardarAlumno(a); //AGREGANDO ALUMNOS
         ad.guardarAlumno(b);
         ad.actualizarAlumno(a);
@@ -48,17 +48,18 @@ public class ProyectoUniversidadULP {
 
         }
         
-        Inscripcion ins1 = new Inscripcion(a, m1, 9), ins2 = new Inscripcion(b, m1, 7);
+        /*Inscripcion ins1 = new Inscripcion(a, m1, 9);
+        Inscripcion ins2 = new Inscripcion(b, m1, 7);
         Inscripcion ins3 = new Inscripcion(id.buscarAlumno(3), id.buscarMateria(1), 3);
         Inscripcion ins4 = new Inscripcion(id.buscarAlumno(3), id.buscarMateria(2), 4);
         Inscripcion ins5 = new Inscripcion(id.buscarAlumno(3), id.buscarMateria(3), 5);
         /*
         id.guardarInscripcion(ins1);
         id.guardarInscripcion(ins2);
-        */
+        *//*
          id.guardarInscripcion(ins3);
          id.guardarInscripcion(ins4);
-         id.guardarInscripcion(ins5);         
+         id.guardarInscripcion(ins5);*/         
          
          
          

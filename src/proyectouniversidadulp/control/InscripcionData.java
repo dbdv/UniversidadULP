@@ -36,8 +36,8 @@ public class InscripcionData {
 
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setInt(1, ins.getIdAlumno().getIdAlumno());
-            ps.setInt(2, ins.getIdMateria().getId_materia());
+            ps.setInt(1, ins.getIdAlumno());
+            ps.setInt(2, ins.getIdMateria());
             ps.setDouble(3, ins.getNota());
 
             ps.executeUpdate();
@@ -79,9 +79,9 @@ public class InscripcionData {
                 ins.setIdIns(rs.getInt(1));
 
                 alumno = buscarAlumno(rs.getInt(2));
-                ins.setIdAlumno(alumno);
+                ins.setIdAlumno(alumno.getIdAlumno());
                 materia = buscarMateria(rs.getInt(3));
-                ins.setIdMateria(materia);
+                ins.setIdMateria(materia.getId_materia());
                 ins.setNota(rs.getDouble(4));
                 lista.add(ins);
             }

@@ -27,14 +27,40 @@ public class AlumnoData {
     }
 
     public void guardarAlumno(Alumno alumno) {
+        String sql = "INSERT INTO alumno(legajo, nombre, fechaNac, activo) VALUES (?,?,?,?)";
+
+        try {
+            try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {  //Prepara la sentencia para SQL
+                ps.setInt(1, alumno.getLegajo());
+                ps.setString(2, alumno.getNombre());
+                ps.setDate(3, Date.valueOf(alumno.getFechaNac()));
+                ps.setBoolean(4, alumno.isActivo());
+
+                ps.executeUpdate(); //NO PONER PARAMETROS
+                ResultSet rs = ps.getGeneratedKeys(); //Recupero el ID (id_alumno)
+                if (rs.next()) {
+                    System.out.println("Alumno " + alumno.getNombre() + ", cargado correctamente.");
+                    //alumno.setIdAlumno(rs.getInt(1));
+                    alumno.setIdAlumno(rs.getInt("idAlumno"));
+                    System.out.println("id del alumno: " + alumno.getIdAlumno());
+                    
+                }
+                //alumno.setId_alumno(rs.getInt(1));
+                ps.close();
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al insertar alumno\n" + ex);
+        }
+    }
+    /*public void guardarAlumno(Alumno alumno) {
         String sql = "INSERT INTO alumno(legajo, nombre, fechaNac, activo) VALUES (?,?,?,?,?)";
 
         try {
             try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {  //Prepara la sentencia para SQL
                 ps.setInt(1, alumno.getLegajo());
                 ps.setString(2, alumno.getNombre());
-                ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
-                ps.setBoolean(5, alumno.isActivo());
+                ps.setDate(3, Date.valueOf(alumno.getFechaNac()));
+                ps.setBoolean(4, alumno.isActivo());
 
                 ps.executeUpdate(); //NO PONER PARAMETROS
                 ResultSet rs = ps.getGeneratedKeys(); //Recupero el ID (id_alumno)
@@ -50,7 +76,7 @@ public class AlumnoData {
         } catch (SQLException ex) {
             System.out.println("Error al insertar Alumno\n" + ex);
         }
-    }
+    }*/
     
     public void borrarAlumno(int id) {
         String sql = "DELETE FROM alumno WHERE idAlumno=?";
@@ -132,13 +158,13 @@ public class AlumnoData {
                 a.setIdAlumno(rs.getInt(1));
                 a.setLegajo(rs.getInt(2));
                 a.setNombre(rs.getString(3));
-                a.setFechaNac(rs.getDate(5).toLocalDate()); //Convierte un Date a LocalDate                                     
-                a.setActivo(rs.getBoolean(6));
+                a.setFechaNac(rs.getDate(4).toLocalDate()); //Convierte un Date a LocalDate                                     
+                a.setActivo(rs.getBoolean(5));
 
             }
             ps.close();
         } catch (SQLException ex) {
-            System.out.println("Error al buscar alumno");
+            System.out.println("Error al buscar alumno"+ex);
 
         }
 
@@ -161,8 +187,8 @@ public class AlumnoData {
                 a.setIdAlumno(rs.getInt(1));
                 a.setLegajo(rs.getInt(2));
                 a.setNombre(rs.getString(3));
-                a.setFechaNac(rs.getDate(5).toLocalDate()); //Convierte un Date a LocalDate                                     
-                a.setActivo(rs.getBoolean(6));
+                a.setFechaNac(rs.getDate(4).toLocalDate()); //Convierte un Date a LocalDate                                     
+                a.setActivo(rs.getBoolean(5));
                 alumnos.add(a);
             }
             ps.close();

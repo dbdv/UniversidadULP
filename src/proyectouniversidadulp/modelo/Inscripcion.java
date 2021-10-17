@@ -11,25 +11,27 @@ package proyectouniversidadulp.modelo;
  */
 public class Inscripcion {
     private int idIns;
-    private Alumno idAlumno;
-    private Materia idMateria;
+    private int idAlumno;
+    private int idMateria;
     private double nota;
 
     public Inscripcion() {
     }    
-    
-    public Inscripcion(Alumno id_alumno, Materia id_materia, double nota) {
-        this.idAlumno = id_alumno;
-        this.idMateria = id_materia;       
+
+    public Inscripcion(int idIns, int idAlumno, int idMateria, double nota) {
+        this.idIns = idIns;
+        this.idAlumno = idAlumno;
+        this.idMateria = idMateria;
         this.nota = nota;
     }
 
-    public Inscripcion(int id_inscripcion, Alumno id_alumno, Materia id_materia, double nota) {
-        this.idIns = id_inscripcion;
-        this.idAlumno = id_alumno;
-        this.idMateria = id_materia;
+    public Inscripcion(int idAlumno, int idMateria, double nota) {
+        this.idAlumno = idAlumno;
+        this.idMateria = idMateria;
         this.nota = nota;
     }
+    
+   
 
     public int getIdIns() {
         return idIns;
@@ -39,21 +41,23 @@ public class Inscripcion {
         this.idIns = idIns;
     }
 
-    public Alumno getIdAlumno() {
+    public int getIdAlumno() {
         return idAlumno;
     }
 
-    public void setIdAlumno(Alumno idAlumno) {
+    public void setIdAlumno(int idAlumno) {
         this.idAlumno = idAlumno;
     }
 
-    public Materia getIdMateria() {
+    public int getIdMateria() {
         return idMateria;
     }
 
-    public void setIdMateria(Materia idMateria) {
+    public void setIdMateria(int idMateria) {
         this.idMateria = idMateria;
     }
+
+   
 
     public double getNota() {
         return nota;
