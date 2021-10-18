@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import proyectouniversidadulp.modelo.Alumno;
 import proyectouniversidadulp.modelo.Conexion;
@@ -242,10 +244,25 @@ public class InscripcionData {
         return ad.buscarAlumno(id);
 
     }
-    //prueba 
-     public Alumno buscar(int id) {
-        AlumnoData ad = new AlumnoData(conexion);
-        return ad.buscarAlumno(id);
+    
+    
+    public void borrarInscripcion(int idAlumno , int idMateria) {
+      
+       
+            String sql = "DELETE FROM inscripcion  WHERE idAlumno=? and idMateria=?";
+            PreparedStatement ps;
+           try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ps.setInt(2, idMateria);
+            
+            ps.executeUpdate();
+            ps.close();
+               System.out.println("Inscripcion borrada con exito");
+        } catch (SQLException ex) {
+            Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
 
     }
 

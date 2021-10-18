@@ -10,7 +10,7 @@ package proyectouniversidadulp.modelo;
  * @author Usuario
  */
 public class Inscripcion {
-    private int idIns;
+    private int idInsc;
     private int idAlumno;
     private int idMateria;
     private double nota;
@@ -18,8 +18,8 @@ public class Inscripcion {
     public Inscripcion() {
     }    
 
-    public Inscripcion(int idIns, int idAlumno, int idMateria, double nota) {
-        this.idIns = idIns;
+    public Inscripcion(int idInsc, int idAlumno, int idMateria, double nota) {
+        this.idInsc = idInsc;
         this.idAlumno = idAlumno;
         this.idMateria = idMateria;
         this.nota = nota;
@@ -34,11 +34,11 @@ public class Inscripcion {
    
 
     public int getIdIns() {
-        return idIns;
+        return idInsc;
     }
 
     public void setIdIns(int idIns) {
-        this.idIns = idIns;
+        this.idInsc = idIns;
     }
 
     public int getIdAlumno() {
@@ -59,7 +59,7 @@ public class Inscripcion {
 
     @Override
     public String toString() {
-        return "Inscripcion{" + "idIns=" + idIns + ", idAlumno=" + idAlumno + ", idMateria=" + idMateria + ", nota=" + nota + '}';
+        return "Inscripcion{" + "idIns=" + idInsc + ", idAlumno=" + idAlumno + ", idMateria=" + idMateria + ", nota=" + nota + '}';
     }
 
    
