@@ -265,6 +265,23 @@ public class InscripcionData {
         
 
     }
+    
+    public void actualizarNotas(int idAlumno, int idMateria, int nota) {
+
+        String sql = "UPDATE inscripcion SET nota = ? WHERE inscripcion.idAlumno = ? AND inscripcion.idMateria = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, nota);
+            ps.setInt(2, idAlumno);
+            ps.setInt(3, idMateria);
+
+            ps.executeUpdate();
+        } catch (SQLException sqlE) {
+            System.out.println("Error al actualizar nota.\n" + sqlE);
+        }
+    }
 
 
     public Materia buscarMateria(int id) {
