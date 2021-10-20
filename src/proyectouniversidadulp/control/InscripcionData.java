@@ -238,6 +238,38 @@ public class InscripcionData {
         
     } 
     
+    public List<Inscripcion> obtenerInscripciones() throws SQLException {
+        List<Inscripcion> lista = new ArrayList<>();        
+        Inscripcion ins;
+        Alumno alumno;
+        Materia materia;
+        
+        
+        String sql = "SELECT * FROM inscripcion";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            
+            ResultSet rs=ps.executeQuery();
+            
+            while (rs.next()) {
+
+                ins = new Inscripcion();
+                ins.setIdIns(rs.getInt(1));
+
+                alumno = buscarAlumno(rs.getInt(2));
+                ins.setIdAlumno(alumno.getIdAlumno());
+                materia = buscarMateria(rs.getInt(3));
+                ins.setIdMateria(materia.getId_materia());
+                ins.setNota(rs.getDouble(4));
+                lista.add(ins);
+            }
+            ps.close();
+        }
+        
+        
+        return lista;
+        
+    } 
+    
     
     public Alumno buscarAlumno(int id) {
         AlumnoData ad = new AlumnoData(conexion);
