@@ -79,6 +79,7 @@ public class Test {
         //System.out.println(id.obtenerMateriasCursadasPorAlumno(67));
         //System.out.println(id.obtenerMateriasNoCursadasPorAlumno(67));
         System.out.println(id.obtenerInscripcion(67, 36));
+        System.out.println(id.obtenerInscripciones());
         
     }
     
