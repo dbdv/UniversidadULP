@@ -48,10 +48,22 @@
             <Property name="text" type="java.lang.String" value="Inscripciones"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="jmInscribir">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Manejo de inscripciones"/>
+                <Property name="text" type="java.lang.String" value="Inscribir"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmInscribirMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmInscribirActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmDesinscribir">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Desinscribir"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmDesinscribirActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

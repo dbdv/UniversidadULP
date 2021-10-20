@@ -36,7 +36,8 @@ public class Principal extends javax.swing.JFrame {
         jmAlumno = new javax.swing.JMenu();
         jmFormAlumnos = new javax.swing.JMenuItem();
         jmIns = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmInscribir = new javax.swing.JMenuItem();
+        jmDesinscribir = new javax.swing.JMenuItem();
         jmCargaNotas = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jmCons = new javax.swing.JMenu();
@@ -83,8 +84,26 @@ public class Principal extends javax.swing.JFrame {
 
         jmIns.setText("Inscripciones");
 
-        jMenuItem1.setText("Manejo de inscripciones");
-        jmIns.add(jMenuItem1);
+        jmInscribir.setText("Inscribir");
+        jmInscribir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmInscribirMouseClicked(evt);
+            }
+        });
+        jmInscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmInscribirActionPerformed(evt);
+            }
+        });
+        jmIns.add(jmInscribir);
+
+        jmDesinscribir.setText("Desinscribir");
+        jmDesinscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmDesinscribirActionPerformed(evt);
+            }
+        });
+        jmIns.add(jmDesinscribir);
 
         jMenuBar1.add(jmIns);
 
@@ -129,6 +148,39 @@ public class Principal extends javax.swing.JFrame {
         escritorio.moveToFront(va);
     }//GEN-LAST:event_jmFormAlumnosActionPerformed
 
+    private void jmInscribirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmInscribirMouseClicked
+        // TODO add your handling code here:
+        VistaAltaInscripcion vai = new VistaAltaInscripcion();
+        vai.setVisible(true);
+        
+        escritorio.removeAll();
+        escritorio.repaint();
+        escritorio.add(vai);
+        escritorio.moveToFront(vai);
+    }//GEN-LAST:event_jmInscribirMouseClicked
+
+    private void jmInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmInscribirActionPerformed
+        // TODO add your handling code here:
+        VistaAltaInscripcion vai = new VistaAltaInscripcion();
+        vai.setVisible(true);
+        
+        escritorio.removeAll();
+        escritorio.repaint();
+        escritorio.add(vai);
+        escritorio.moveToFront(vai);
+    }//GEN-LAST:event_jmInscribirActionPerformed
+
+    private void jmDesinscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDesinscribirActionPerformed
+        // TODO add your handling code here:
+        VistaBajaInscripcion vbi = new VistaBajaInscripcion();
+        vbi.setVisible(true);
+        
+        escritorio.removeAll();
+        escritorio.repaint();
+        escritorio.add(vbi);
+        escritorio.moveToFront(vbi);
+    }//GEN-LAST:event_jmDesinscribirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -167,16 +219,17 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu jmAlumno;
     private javax.swing.JMenu jmArchivo;
     private javax.swing.JMenu jmCargaNotas;
     private javax.swing.JMenu jmCons;
+    private javax.swing.JMenuItem jmDesinscribir;
     private javax.swing.JMenuItem jmFormAlumnos;
     private javax.swing.JMenuItem jmFormMaterias;
     private javax.swing.JMenu jmIns;
+    private javax.swing.JMenuItem jmInscribir;
     private javax.swing.JMenu jmMateria;
     private javax.swing.JMenuItem jmSalir;
     // End of variables declaration//GEN-END:variables

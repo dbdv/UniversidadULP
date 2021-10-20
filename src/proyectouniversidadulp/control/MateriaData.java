@@ -107,10 +107,12 @@ public class MateriaData {
 
         Materia m = null;
 
-        String sql = "SELECT * FROM materia  WHERE activo=0";
+        String sql = "SELECT * FROM materia  WHERE activo = 0 AND materia.idMateria = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
 
