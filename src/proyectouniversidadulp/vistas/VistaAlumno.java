@@ -221,12 +221,13 @@ private Conexion conexion;
         // TODO add your handling code here:
         
         if(jtId.getText() != null){
+            int id= Integer.parseInt(jtId.getText());
             String nombre=jtNombre.getText();        
             int legajo=Integer.parseInt(jtLegajo.getText());
             LocalDate fechaNac=LocalDate.parse(jtFechaNac.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             boolean activo = jcbActivo.isEnabled();
 
-            Alumno alumno = new Alumno (legajo, nombre, fechaNac, activo);
+            Alumno alumno = new Alumno (legajo, nombre, id, fechaNac, activo);
             alumnoData.actualizarAlumno(alumno);
         }
         

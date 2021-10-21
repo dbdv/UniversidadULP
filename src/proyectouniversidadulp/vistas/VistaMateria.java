@@ -189,7 +189,7 @@ private Conexion conexion;
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         // TODO add your handling code here:
          String nombre=jTNombre.getText();        
-        int id=Integer.parseInt(jTId.getText());
+        //int id=Integer.parseInt(jTId.getText());
         int cuatrimestre= parseInt(jTCuatrimestre.getText());
         boolean activo = jChBActivo.isEnabled();
         
@@ -220,11 +220,12 @@ private Conexion conexion;
         // TODO add your handling code here:
            
         if(jTId.getText() != null){
+            int id=Integer.parseInt(jTId.getText());
             String nombre=jTNombre.getText();        
             int cuatrimestre=Integer.parseInt(jTCuatrimestre.getText());
             boolean activo = jChBActivo.isEnabled();
-
-            Materia materia = new Materia(nombre, cuatrimestre, activo);
+            
+            Materia materia = new Materia(id, nombre, cuatrimestre, activo);
             materiaData.actualizarMateria(materia);}
     }//GEN-LAST:event_jBActualizarActionPerformed
 
