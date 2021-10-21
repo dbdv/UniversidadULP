@@ -71,6 +71,8 @@ public class VistaBajaInscripcion extends javax.swing.JInternalFrame {
         jbBaja = new javax.swing.JButton();
         jbLimpiar = new javax.swing.JButton();
 
+        setClosable(true);
+
         jLabel1.setText("ID Alumno:");
 
         jtNombreAlumno.setEditable(false);

@@ -51,6 +51,7 @@ public class TestBel {
          id.guardarInscripcion(ins3);
        // id.guardarInscripcion(ins2);
         System.out.println(id.buscarInscripciones(97, 49));
+        System.out.println( md.buscarMateria(49));
         
      
 }

@@ -72,6 +72,7 @@ public class VistaAltaInscripcion extends javax.swing.JInternalFrame {
         jbInscribir = new javax.swing.JButton();
         jbLimpiar = new javax.swing.JButton();
 
+        setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);

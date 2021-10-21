@@ -66,6 +66,11 @@ public class Principal extends javax.swing.JFrame {
         jmMateria.setText("Materias");
 
         jmFormMaterias.setText("Formulario de Materias");
+        jmFormMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmFormMateriasActionPerformed(evt);
+            }
+        });
         jmMateria.add(jmFormMaterias);
 
         jMenuBar1.add(jmMateria);
@@ -197,6 +202,19 @@ public class Principal extends javax.swing.JFrame {
         escritorio.moveToFront(vapm);
         
     }//GEN-LAST:event_jMenuItemVistaAlumnosPorMateriasActionPerformed
+
+    private void jmFormMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFormMateriasActionPerformed
+        // TODO add your handling code here:
+           VistaMateria vam = new VistaMateria();
+        vam.setVisible(true);
+        
+        escritorio.removeAll();
+        escritorio.repaint();
+        escritorio.add(vam);
+        escritorio.moveToFront(vam);
+        
+        
+    }//GEN-LAST:event_jmFormMateriasActionPerformed
 
     /**
      * @param args the command line arguments
