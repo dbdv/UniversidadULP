@@ -41,7 +41,7 @@ public class Principal extends javax.swing.JFrame {
         jmCargaNotas = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jmCons = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItemVistaAlumnosPorMaterias = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,8 +116,13 @@ public class Principal extends javax.swing.JFrame {
 
         jmCons.setText("Consultas");
 
-        jMenuItem3.setText("Listado de alumnos por Materia");
-        jmCons.add(jMenuItem3);
+        jMenuItemVistaAlumnosPorMaterias.setText("Listado de alumnos por Materia");
+        jMenuItemVistaAlumnosPorMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemVistaAlumnosPorMateriasActionPerformed(evt);
+            }
+        });
+        jmCons.add(jMenuItemVistaAlumnosPorMaterias);
 
         jMenuBar1.add(jmCons);
 
@@ -181,6 +186,18 @@ public class Principal extends javax.swing.JFrame {
         escritorio.moveToFront(vbi);
     }//GEN-LAST:event_jmDesinscribirActionPerformed
 
+    private void jMenuItemVistaAlumnosPorMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVistaAlumnosPorMateriasActionPerformed
+        // TODO add your handling code here:       
+        VistaAlumnosPorMateria vapm = new VistaAlumnosPorMateria();
+        vapm.setVisible(true);
+        
+        escritorio.removeAll();
+        escritorio.repaint();
+        escritorio.add(vapm);
+        escritorio.moveToFront(vapm);
+        
+    }//GEN-LAST:event_jMenuItemVistaAlumnosPorMateriasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -220,7 +237,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItemVistaAlumnosPorMaterias;
     private javax.swing.JMenu jmAlumno;
     private javax.swing.JMenu jmArchivo;
     private javax.swing.JMenu jmCargaNotas;

@@ -84,10 +84,13 @@
             <Property name="text" type="java.lang.String" value="Consultas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemVistaAlumnosPorMaterias">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listado de alumnos por Materia"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemVistaAlumnosPorMateriasActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
