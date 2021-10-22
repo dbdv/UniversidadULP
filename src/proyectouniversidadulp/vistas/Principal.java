@@ -115,6 +115,11 @@ public class Principal extends javax.swing.JFrame {
         jmCargaNotas.setText("Carga de Notas");
 
         jMenuItem2.setText("Manipulacion de notas");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jmCargaNotas.add(jMenuItem2);
 
         jMenuBar1.add(jmCargaNotas);
@@ -215,6 +220,17 @@ public class Principal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jmFormMateriasActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        VistaCargarNota vcn = new VistaCargarNota();
+        vcn.setVisible(true);
+        
+        escritorio.removeAll();
+        escritorio.repaint();
+        escritorio.add(vcn);
+        escritorio.moveToFront(vcn);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

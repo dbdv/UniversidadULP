@@ -23,7 +23,7 @@ public class ProyectoUniversidadULP {
         MateriaData md = new MateriaData(conexion);
         InscripcionData id = new InscripcionData(conexion);
 
-        List<Alumno> alumnos = new ArrayList<>();
+        /*List<Alumno> alumnos = new ArrayList<>();
 
         Alumno a = new Alumno(9898, "Marcos Suarez", LocalDate.of(2000, Month.NOVEMBER, 28), true); //CREANDO ALUMNOS
         Alumno b = new Alumno(6969, "Martin Jofre", LocalDate.of(1995, Month.MARCH, 12), true);
@@ -62,6 +62,7 @@ public class ProyectoUniversidadULP {
          id.guardarInscripcion(ins5);*/         
          
          
-         
+         Inscripcion prueba = new Inscripcion(1, 26, 0);
+         id.guardarInscripcion(prueba);
     }
 }
