@@ -30,17 +30,29 @@ public class TestBel {
         Alumno a1 =new Alumno(123, "Rocio Dominguez", LocalDate.of(1990, Month.MARCH, 19), true);
         Alumno a2 =new Alumno(123, "Maria Dominguez", LocalDate.of(1991, Month.MARCH, 26), true);
         Materia m1= new Materia("Matematica I", 1, true);
+        Materia m2= new Materia("Laboratorio I", 2, true);
+        Materia m3= new Materia("Ingles tecnico", 3, true);
         
         Inscripcion ins1= new Inscripcion(97,49, 9);
+        Inscripcion ins2= new Inscripcion(97,76, 8);
+        Inscripcion ins3= new Inscripcion(97,77, 9);
        // Inscripcion ins2= new Inscripcion(a2.getIdAlumno(), m1.getId_materia(),8);
         
         
         ad.guardarAlumno(a1);
         md.guardarMateria(m1);
-        
+        md.guardarMateria(m2);
+         md.guardarMateria(m3);
+         
         id.guardarInscripcion(ins1);
         id.borrarInscripcion(97,49 );
          id.guardarInscripcion(ins1);
+         id.guardarInscripcion(ins2);
+         id.guardarInscripcion(ins3);
        // id.guardarInscripcion(ins2);
+        System.out.println(id.buscarInscripciones(97, 49));
+        System.out.println( md.buscarMateria(49));
+        
+     
 }
 }

@@ -204,71 +204,127 @@ public class InscripcionData {
         
         return lista;
     }
-     
-    public List<Inscripcion> obtenerInscripcion(int idAlumno, int idMateria) throws SQLException {
-        List<Inscripcion> lista = new ArrayList<>();        
-        Inscripcion ins;
-        Alumno alumno;
-        Materia materia;
-        
-        
-        String sql = "SELECT inscripcion.idInsc, alumno.idAlumno, materia.idMateria, legajo, alumno.nombre, materia.nombre, nota FROM inscripcion, alumno, materia WHERE inscripcion.idAlumno=? AND inscripcion.idMateria=? AND inscripcion.idAlumno=alumno.idAlumno AND inscripcion.idMateria=materia.idMateria";
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idAlumno);
-            ps.setInt(2, idMateria);
-            ResultSet rs=ps.executeQuery();
-            
-            while (rs.next()) {
+     public List<Inscripcion> obtenerInscripciones() {
+        List<Inscripcion> insc = new ArrayList<>();
+        Inscripcion i = null;
 
-                ins = new Inscripcion();
-                ins.setIdIns(rs.getInt(1));
-
-                alumno = buscarAlumno(rs.getInt(2));
-                ins.setIdAlumno(alumno.getIdAlumno());
-                materia = buscarMateria(rs.getInt(3));
-                ins.setIdMateria(materia.getId_materia());
-                ins.setNota(rs.getDouble(4));
-                lista.add(ins);
-            }
-            ps.close();
-        }
-        
-        
-        return lista;
-        
-    } 
-    
-    public List<Inscripcion> obtenerInscripciones() throws SQLException {
-        List<Inscripcion> lista = new ArrayList<>();        
-        Inscripcion ins;
-        Alumno alumno;
-        Materia materia;
-        
-        
         String sql = "SELECT * FROM inscripcion";
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
-            
-            ResultSet rs=ps.executeQuery();
-            
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+
+            //ps.execute();
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                i = new Inscripcion();
+                i.setIdIns(rs.getInt(1));
+                i.setIdAlumno(rs.getInt(2));
+                i.setIdMateria(rs.getInt(3));
+                i.setNota(rs.getInt(4));
 
-                ins = new Inscripcion();
-                ins.setIdIns(rs.getInt(1));
-
-                alumno = buscarAlumno(rs.getInt(2));
-                ins.setIdAlumno(alumno.getIdAlumno());
-                materia = buscarMateria(rs.getInt(3));
-                ins.setIdMateria(materia.getId_materia());
-                ins.setNota(rs.getDouble(4));
-                lista.add(ins);
+                insc.add(i);
             }
             ps.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar");
+
+        }        
+        return insc;
+    }
+     public Inscripcion buscarInscripciones(int id_alumno, int id_materia) {
+        Inscripcion i = null;
+
+        String sql = "SELECT * FROM inscripcion WHERE idAlumno = ? and idMateria=?";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id_alumno);
+             ps.setInt(2, id_materia);
+            
+            ps.execute();
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                i= new Inscripcion();
+                i.setIdIns(rs.getInt(1));
+                i.setIdAlumno(rs.getInt(2));
+                i.setIdMateria(rs.getInt(3));
+                i.setNota(rs.getInt(4));
+
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar alumno"+ex);
+
         }
-        
-        
-        return lista;
-        
-    } 
+
+        return i;
+    }
+     
+//    public List<Inscripcion> obtenerInscripcion(int idAlumno, int idMateria) throws SQLException {
+//        List<Inscripcion> lista = new ArrayList<>();        
+//        Inscripcion ins;
+//        Alumno alumno;
+//        Materia materia;
+//        
+//        
+//        String sql = "SELECT inscripcion.idInsc, alumno.idAlumno, materia.idMateria, legajo, alumno.nombre, materia.nombre, nota FROM inscripcion, alumno, materia WHERE inscripcion.idAlumno=? AND inscripcion.idMateria=? AND inscripcion.idAlumno=alumno.idAlumno AND inscripcion.idMateria=materia.idMateria";
+//        try (PreparedStatement ps = con.prepareStatement(sql)) {
+//            ps.setInt(1, idAlumno);
+//            ps.setInt(2, idMateria);
+//            ResultSet rs=ps.executeQuery();
+//            
+//            while (rs.next()) {
+//
+//                ins = new Inscripcion();
+//                ins.setIdIns(rs.getInt(1));
+//
+//                alumno = buscarAlumno(rs.getInt(2));
+//                ins.setIdAlumno(alumno.getIdAlumno());
+//                materia = buscarMateria(rs.getInt(3));
+//                ins.setIdMateria(materia.getId_materia());
+//                ins.setNota(rs.getDouble(4));
+//                lista.add(ins);
+//            }
+//            ps.close();
+//        }
+//        
+//        
+//        return lista;
+//        
+//    } 
+    
+//    public List<Inscripcion> obtenerInscripciones() throws SQLException {
+//        List<Inscripcion> lista = new ArrayList<>();        
+//        Inscripcion ins;
+//        Alumno alumno;
+//        Materia materia;
+//        
+//        
+//        String sql = "SELECT * FROM inscripcion";
+//        try (PreparedStatement ps = con.prepareStatement(sql)) {
+//            
+//            ResultSet rs=ps.executeQuery();
+//            
+//            while (rs.next()) {
+//
+//                ins = new Inscripcion();
+//                ins.setIdIns(rs.getInt(1));
+//
+//                alumno = buscarAlumno(rs.getInt(2));
+//                ins.setIdAlumno(alumno.getIdAlumno());
+//                materia = buscarMateria(rs.getInt(3));
+//                ins.setIdMateria(materia.getId_materia());
+//                ins.setNota(rs.getDouble(4));
+//                lista.add(ins);
+//            }
+//            ps.close();
+//        }
+//        
+//        
+//        return lista;
+//        
+//    } 
     
     
     public Alumno buscarAlumno(int id) {

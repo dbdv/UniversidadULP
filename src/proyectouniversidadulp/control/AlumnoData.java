@@ -121,15 +121,15 @@ public class AlumnoData {
     }
 */
     public void actualizarAlumno(Alumno alumno) {
-        String sql = "UPDATE alumno SET legajo=?, nombre=?, fechaNac=? WHERE idAlumno=?";
+        String sql = "UPDATE alumno SET legajo=?, nombre=?, fechaNac=?, activo=? WHERE idAlumno=?";
 
         try {
             try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {  //Prepara la sentencia para SQL
                 ps.setInt(1, alumno.getLegajo());
                 ps.setString(2, alumno.getNombre());
                 ps.setDate(3, Date.valueOf(alumno.getFechaNac()));
-                //ps.setBoolean(4, alumno.isActivo()); SACO EL CAMPO ACTIVO
-                ps.setInt(4, alumno.getIdAlumno());
+                ps.setBoolean(4, alumno.isActivo()); //SACO EL CAMPO ACTIVO
+                ps.setInt(5, alumno.getIdAlumno());
 
                 ps.executeUpdate(); //NO PONER PARAMETROS
                 ResultSet rs = ps.getGeneratedKeys(); //Recupero el ID (id_alumno)
