@@ -185,7 +185,7 @@ public class VistaAltaInscripcion extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbBuscarMateria)
                             .addComponent(jbBuscarAlumno))
-                        .addGap(0, 160, Short.MAX_VALUE))))
+                        .addGap(0, 73, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
