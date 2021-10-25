@@ -5,6 +5,8 @@
  */
 package proyectouniversidadulp.vistas;
 
+import static javafx.application.Platform.exit;
+
 /**
  *
  * @author Usuario
@@ -59,6 +61,11 @@ public class Principal extends javax.swing.JFrame {
         jmArchivo.setText("Archivo");
 
         jmSalir.setText("Salir");
+        jmSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSalirActionPerformed(evt);
+            }
+        });
         jmArchivo.add(jmSalir);
 
         jMenuBar1.add(jmArchivo);
@@ -231,6 +238,11 @@ public class Principal extends javax.swing.JFrame {
         escritorio.add(vcn);
         escritorio.moveToFront(vcn);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jmSalirActionPerformed
 
     /**
      * @param args the command line arguments
