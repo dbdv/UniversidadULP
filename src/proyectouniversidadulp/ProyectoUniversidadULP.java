@@ -63,6 +63,8 @@ public class ProyectoUniversidadULP {
          
          
          Inscripcion prueba = new Inscripcion(1, 26, 0);
-         id.guardarInscripcion(prueba);
+         //id.guardarInscripcion(prueba);
+         
+         
     }
 }

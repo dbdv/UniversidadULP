@@ -29,9 +29,11 @@
                       <Component id="jbGuardar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jbBorrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jbAlta" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jbActualizar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="75" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jbLimpiar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                   </Group>
@@ -43,24 +45,28 @@
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jcbActivo" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jtId" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jbBuscar" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtNombre" min="-2" pref="156" max="-2" attributes="0"/>
+                          <Component id="jtFechaNac" min="-2" pref="156" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jtLegajo" alignment="0" pref="116" max="32767" attributes="0"/>
+                                  <Component id="jtId" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jtNombre" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jtFechaNac" alignment="0" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jbBuscar" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jtLegajo" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="jcbActivo" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,12 +100,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jcbActivo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="68" max="32767" attributes="0"/>
+                      <EmptySpace pref="71" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jbBorrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jbGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jbLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jbActualizar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbAlta" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
@@ -133,7 +140,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fecha de nacimiento:"/>
+        <Property name="text" type="java.lang.String" value="Fecha de nacimiento(aa/mm/dd):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -162,7 +169,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbBorrar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Borrar"/>
+        <Property name="text" type="java.lang.String" value="Dar baja"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBorrarActionPerformed"/>
@@ -198,6 +205,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtLegajo">
+    </Component>
+    <Component class="javax.swing.JButton" name="jbAlta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Dar alta"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAltaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

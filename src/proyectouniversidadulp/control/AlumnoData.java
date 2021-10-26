@@ -79,6 +79,20 @@ public class AlumnoData {
     }*/
     
     public void borrarAlumno(int id) {
+        String sql = "UPDATE alumno SET activo = 0 WHERE idAlumno=?";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void borrarAlumnoTotal(int id) {
         String sql = "DELETE FROM alumno WHERE idAlumno=?";
         PreparedStatement ps;
         try {

@@ -5,8 +5,6 @@
  */
 package proyectouniversidadulp.vistas;
 
-import static javafx.application.Platform.exit;
-
 /**
  *
  * @author Usuario
